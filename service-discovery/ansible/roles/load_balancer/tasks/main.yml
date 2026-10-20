@@ -12,7 +12,7 @@
     path: "{{ consul_data_dir }}"
     state: directory
     owner: consul
-    gorup: consul
+    group: consul
 
 - name: Create consul-template config directory
   file:
