@@ -10,7 +10,7 @@
 - name: Create data directory
   file:
     path: "{{ consul_data_dir }}"
-    state: direcroty
+    state: directory
     owner: consul
     group: consul
 
