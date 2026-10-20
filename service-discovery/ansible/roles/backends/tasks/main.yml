@@ -1,3 +1,50 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for backends
+- name : Install consul and nginx
+  apt:
+    name: [consul, nginx]
+    state: present
+    update_cache: yes
+
+- name: Create data directory
+  file:
+    path: "{{ consul_data_dir }}"
+    state: directory
+    owner: consul
+    group: consul
+
+- name: Deploy consul agent config
+  template:
+    src: consul.hcl.j2
+    dest: /etc/consul.d/consul.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  notify: restart consul
+
+- name: Deploy service registration
+  template:
+    src: backend-service.hcl.j2
+    dest: /etc/consul.d/backend-service.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  notify: restart consul
+
+- name: Deploy per-host index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Enable and start consul
+  systemd:
+    name: consul
+    enabled: yes
+    state: started
+
+- name: Enable and start nginx
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started

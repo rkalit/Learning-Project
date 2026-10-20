@@ -1,3 +1,5 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # defaults file for backends
+consul_data_dir: /var/consul
+consul_datacenter: dc1
