@@ -1,0 +1,12 @@
+---
+- hosts: consul_server
+  become: yes
+  roles: [consul_server]
+
+- hosts: backends
+  become: yes
+  roles: [backends]
+
+- hosts: load_balancer
+  become: yes
+  roles: [load_balancer]
