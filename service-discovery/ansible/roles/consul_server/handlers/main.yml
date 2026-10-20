@@ -1,3 +1,7 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # handlers file for consul_server
+- name: restart consul
+  systemd:
+    name: consul
+    state: restarted

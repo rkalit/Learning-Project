@@ -1,0 +1,12 @@
+server              = true
+node_name           = "{{ inventory_hostname }}"
+datacenter          = "{{ consul_datacenter }}"
+data_dir            = "{{ consul_data_dir }}"
+bootstrap_expect    = 1
+bind_addr           = "{{ ansible_default_ipv4.address }}"
+client_addr         = "0.0.0.0"
+encrypt             = "{{ consul_encrypt_key }}"
+log_level           = "INFO"
+ui_config {
+    enabled = true
+}
