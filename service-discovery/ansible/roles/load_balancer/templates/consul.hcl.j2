@@ -1,0 +1,8 @@
+server      = false
+node_name   = "{{ inventory_hostname }}"
+datacenter  = "{{ consul_datacenter }}"
+data_dir    = "{{ consul_data_dir }}"
+bind_addr   = "{{ ansible_default_ipv4.address }}"
+retry_join  = ["{{ consul_server_private_ip }}"]
+encrypt     = "{{ consul_encrypt_key }}"
+log_level   = "INFO"

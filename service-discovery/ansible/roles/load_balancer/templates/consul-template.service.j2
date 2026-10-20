@@ -1,0 +1,11 @@
+[Unit]
+Description=Consul Template
+After=network-online.target consul.service
+Wants=consul.service
+
+[Service]
+ExecStart=/usr/bin/consul-template -config=/etc/consul-template.d/config.hcl
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

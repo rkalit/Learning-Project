@@ -1,3 +1,21 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # handlers file for load_balancer
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: restart consul
+  systemd:
+    name: consul
+    state: restarted
+
+- name: restart consul-template
+  systemd:
+    name: consul-template
+    state: restarted
+
+- name: reload nginx
+  systemd:
+    name: nginx
+    state: reloaded
