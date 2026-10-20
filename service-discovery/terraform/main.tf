@@ -46,6 +46,14 @@ resource "aws_security_group" "lab_sg" {
     self        = true
   }
 
+  ingress {
+    description = "Consul UI from my IP"
+    from_port   = 8500
+    to_port     = 8500
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
